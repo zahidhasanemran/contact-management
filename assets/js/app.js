@@ -39,29 +39,12 @@ dataLoad(contacts);
 
 search.addEventListener("keyup", function(){
     let keyword = search.value;
-    console.log(keyword);
+    let reg = new RegExp(keyword, 'gi');
+
     let fil = contacts.filter((con) => {
-        let nam =  new Set(con.name.toLowerCase().split(""));
-        console.log(nam);
-        if(nam.has(keyword) || con.name.toLowerCase() == keyword.toLowerCase() ){
+        if(con.name.match(reg)){
             return con;
         }
     });
     keyword ? dataLoad(fil) : dataLoad(contacts);
-})
-
-
-// console.log(contact, singleContact, contact_img_wrapper, contact_img, contact_info_wrapper, namee, country, number);
-
-// let sContact = {
-//     name: namee,
-//     img: contact_img.attributes.src.value,
-//     number: number,
-//     country: country
-// }
-
-// contacts.push(sContact)
-
-// console.log(sContact);
-
-// console.log(contacts);
+});
